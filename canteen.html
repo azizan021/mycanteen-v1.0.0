@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyCanteen - Kantin Kampus Online</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+  </head>
+  <body>
+    <header class="header fixed">
+      <div class="container">
+        <a href="index.html" class="back-button">
+          <i class="fas fa-arrow-left"></i>
+        </a>
+        <div class="canteen-header-title" id="canteen-name-header">
+          Memuat...
+        </div>
+        <div class="header-icons">
+          <a href="cart.html" class="icon-link">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-item-count" id="header-cart-item-count">0</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-content canteen-detail-page">
+      <section class="canteen-banner">
+        <img
+          src="images/canteen1.jpg"
+          alt="Kantin Banner"
+          id="canteen-banner-img"
+        />
+        <div class="canteen-info-overlay">
+          <h1 id="canteen-title">Memuat Kantin...</h1>
+          <div class="canteen-meta">
+            <span class="rating">
+              <i class="fas fa-star"></i>
+              <span id="canteen-rating"></span>
+            </span>
+            <span class="status" id="canteen-status"></span>
+          </div>
+          <p id="canteen-description"></p>
+        </div>
+      </section>
+
+      <section class="canteen-menu-section container">
+        <div class="menu-categories" id="menu-categories-nav"></div>
+
+        <div class="menu-list" id="canteen-menu-list"></div>
+      </section>
+    </main>
+
+    <div class="cart-floating-button">
+      <a href="cart.html">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-item-count" id="cart-item-count">0</span>
+      </a>
+    </div>
+
+    <script>
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_AUTH_DOMAIN",
+        projectId: "YOUR_PROJECT_ID",
+        storageBucket: "YOUR_STORAGE_BUCKET",
+        messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+        appId: "YOUR_APP_ID",
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      // Initialize services
+      const db = firebase.firestore();
+      const auth = firebase.auth();
+    </script>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
