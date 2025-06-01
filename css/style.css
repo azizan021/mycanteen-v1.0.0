@@ -1,0 +1,1243 @@
+/* style.css */
+
+/* Umum */
+:root {
+  --primary-color: #007bff; /* Biru */
+  --secondary-color: #6c757d; /* Abu-abu gelap */
+  --accent-color: #ffc107; /* Kuning */
+  --light-bg: #f8f9fa; /* Latar belakang terang */
+  --dark-bg: #343a40; /* Latar belakang gelap */
+  --text-color: #212529; /* Teks gelap */
+  --light-text: #6c757d; /* Teks abu-abu */
+  --border-color: #dee2e6; /* Warna border */
+  --success-color: #28a745; /* Hijau (untuk status buka) */
+  --danger-color: #dc3545; /* Merah (untuk status tutup) */
+  --padding-md: 15px;
+  --padding-lg: 20px;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--light-bg);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 var(--padding-md);
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+/* Header */
+.header {
+  background-color: white;
+  padding: var(--padding-md) 0;
+  border-bottom: 1px solid var(--border-color);
+  position: sticky; /* Tetap di atas */
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* Hapus flex-wrap: wrap; dari sini agar selalu sejajar secara default */
+  /* dan TIDAK AKAN ditambahkan kembali di media query */
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  flex-shrink: 0;
+  margin-right: 20px;
+}
+
+.search-and-icons-wrapper {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 5px 15px;
+  flex-grow: 1;
+  margin: 0;
+  max-width: 300px;
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  flex-grow: 1;
+  padding: 5px;
+  font-size: 0.9rem;
+}
+
+.search-bar .fas.fa-search {
+  color: var(--light-text);
+  margin-left: 10px;
+}
+
+.header-icons {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-left: 0;
+}
+
+.icon-link {
+  position: relative;
+  color: var(--text-color);
+  font-size: 1.2rem;
+  margin-left: var(--padding-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.icon-link:hover {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.cart-item-count {
+  background-color: var(--danger-color);
+  color: white;
+  font-size: 0.7rem;
+  border-radius: 50%;
+  padding: 3px 6px;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  min-width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  display: none; /* Default hidden, shown by JS */
+}
+
+/* Main Content */
+.main-content {
+  padding-top: var(--padding-lg);
+  padding-bottom: 80px; /* Ruang untuk footer fixed */
+}
+
+.promo-banner {
+  margin-bottom: var(--padding-lg);
+  text-align: center;
+}
+
+.promo-banner img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  margin-top: var(--padding-lg);
+  margin-bottom: var(--padding-md);
+}
+
+.section-title h2 {
+  font-size: 1.3rem;
+  color: var(--text-color);
+  margin-bottom: 10px;
+}
+
+/* --- KANTIN POPULER (RESPONSIF HORIZONTAL) --- */
+.canteen-list {
+  display: flex; /* Menggunakan Flexbox */
+  overflow-x: auto; /* Mengaktifkan scroll horizontal jika konten melebihi lebar */
+  -webkit-overflow-scrolling: touch; /* Meningkatkan pengalaman scrolling di iOS */
+  gap: var(--padding-md); /* Jarak antar kartu kantin */
+  padding-bottom: var(--padding-md); /* Ruang di bawah untuk scrollbar */
+  scroll-snap-type: x mandatory; /* Membantu snapping saat scrolling */
+}
+
+.canteen-list::-webkit-scrollbar {
+  height: 8px; /* Tinggi scrollbar */
+}
+
+.canteen-list::-webkit-scrollbar-thumb {
+  background: var(--border-color); /* Warna thumb scrollbar */
+  border-radius: 10px;
+}
+
+.canteen-list::-webkit-scrollbar-track {
+  background: var(--light-bg); /* Warna track scrollbar */
+}
+
+.canteen-card {
+  flex: 0 0 220px; /* Lebar tetap untuk setiap kartu */
+  width: 220px; /* Fallback untuk browser lama */
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none; /* Menghilangkan underline dari link */
+  color: var(--text-color);
+  scroll-snap-align: start; /* Elemen akan snap ke awal saat scrolling */
+}
+
+.canteen-image-container {
+  position: relative;
+  width: 100%;
+  padding-top: 60%; /* Rasio aspek 16:9 atau 5:3, sesuaikan jika perlu */
+  overflow: hidden;
+}
+
+.canteen-image-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Memastikan gambar mengisi area tanpa terdistorsi */
+}
+
+.discount-badge {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+  z-index: 10;
+}
+
+.canteen-info {
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Memastikan info mengisi sisa ruang */
+}
+
+.distance-time {
+  font-size: 0.8rem;
+  color: var(--light-text);
+  margin-bottom: 5px;
+}
+
+.canteen-card h3 {
+  font-size: 1rem;
+  margin: 0 0 5px 0;
+  color: var(--text-color);
+  white-space: nowrap; /* Mencegah teks judul membungkus */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Menampilkan elipsis jika terlalu panjang */
+}
+
+.rating-info {
+  font-size: 0.9rem;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+}
+
+.rating-info .fas.fa-star {
+  color: var(--accent-color);
+  margin-right: 4px;
+}
+
+.rating-count {
+  color: var(--light-text);
+  margin-left: 5px;
+}
+
+/* Menu Recommendations */
+.menu-recommendations {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(150px, 1fr)
+  ); /* Responsif grid */
+  gap: var(--padding-md);
+}
+
+.menu-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  text-align: center;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-card img {
+  width: 100%;
+  height: 120px; /* Tinggi tetap untuk gambar menu */
+  object-fit: cover;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 10px;
+}
+
+.menu-card h4 {
+  font-size: 0.95rem;
+  margin: 0 10px 5px;
+  color: var(--text-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.menu-card .canteen-name {
+  font-size: 0.8rem;
+  color: var(--light-text);
+  margin: 0 10px 8px;
+}
+
+.menu-card .price {
+  font-weight: bold;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+  display: block; /* Memastikan harga di baris baru */
+}
+
+.menu-card .btn-add-to-cart {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  align-self: center; /* Memastikan tombol di tengah */
+  margin-top: auto; /* Mendorong tombol ke bawah */
+}
+
+.menu-card .btn-add-to-cart:hover {
+  background-color: #0056b3;
+}
+
+/* Status Badges */
+.status {
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 3px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-top: 5px;
+}
+
+.status.open {
+  background-color: var(--success-color);
+  color: white;
+}
+
+.status.closed {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+/* Footer (Navigasi Bawah) */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  border-top: 1px solid var(--border-color);
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--light-text);
+  font-size: 0.8rem;
+  text-decoration: none;
+  flex: 1; /* Agar setiap item mengambil ruang yang sama */
+  text-align: center;
+}
+
+.nav-item i {
+  font-size: 1.4rem;
+  margin-bottom: 4px;
+}
+
+.nav-item.active {
+  color: var(--primary-color);
+}
+
+.nav-item:hover {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+/* Canteen Detail Page Specific Styles */
+.canteen-detail-page {
+  padding-bottom: 20px; /* Tambahan padding agar tidak tertutup floating button */
+}
+
+.canteen-banner {
+  position: relative;
+  width: 100%;
+  height: 200px; /* Tinggi banner tetap */
+  overflow: hidden;
+}
+
+.canteen-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.canteen-info-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+  color: white;
+  padding: var(--padding-md);
+}
+
+.canteen-info-overlay h1 {
+  margin: 0 0 5px 0;
+  font-size: 1.5rem;
+}
+
+.canteen-meta {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.canteen-meta .rating {
+  margin-right: var(--padding-md);
+}
+
+.canteen-meta .fas.fa-star {
+  color: var(--accent-color);
+  margin-right: 5px;
+}
+
+.canteen-info-overlay p {
+  font-size: 0.85rem;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.canteen-menu-section {
+  margin-top: var(--padding-lg);
+}
+
+.menu-categories {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: var(--padding-md);
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+}
+
+.menu-categories::-webkit-scrollbar {
+  height: 4px;
+}
+
+.menu-categories::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 10px;
+}
+
+.menu-categories::-webkit-scrollbar-track {
+  background: var(--light-bg);
+}
+
+.category-item {
+  flex-shrink: 0; /* Mencegah item menyusut */
+  padding: 8px 15px;
+  border-radius: 20px;
+  background-color: #e9ecef;
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 0.9rem;
+  white-space: nowrap; /* Mencegah teks membungkus */
+  scroll-snap-align: start;
+}
+
+.category-item.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.category-item:hover {
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+}
+
+.menu-list h3 {
+  font-size: 1.2rem;
+  margin-top: var(--padding-lg);
+  margin-bottom: var(--padding-md);
+  padding-top: 60px; /* Ruang untuk header fixed dan kategori nav */
+  margin-top: -60px; /* Offset agar judul tidak tertutup */
+}
+
+.menu-item-card {
+  display: flex;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: var(--padding-md);
+  overflow: hidden;
+}
+
+.menu-item-card img {
+  width: 100px; /* Lebar gambar di daftar menu */
+  height: 100px;
+  object-fit: cover;
+  flex-shrink: 0; /* Mencegah gambar menyusut */
+}
+
+.menu-item-details {
+  padding: 10px var(--padding-md);
+  flex-grow: 1;
+}
+
+.menu-item-details h4 {
+  margin: 0 0 5px 0;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.menu-item-details p {
+  font-size: 0.85rem;
+  color: var(--light-text);
+  margin-bottom: 8px;
+}
+
+.menu-item-details .price {
+  font-weight: bold;
+  color: var(--primary-color);
+  font-size: 0.95rem;
+}
+
+.menu-item-card .btn-add-to-cart {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  align-self: flex-end; /* Memastikan tombol di kanan bawah */
+  margin: 10px;
+  flex-shrink: 0;
+}
+
+.menu-item-card .btn-add-to-cart:hover {
+  background-color: #0056b3;
+}
+
+/* Back Button (Canteen & Cart Page) */
+.header.fixed {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.header.fixed .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--padding-md);
+  padding-bottom: var(--padding-md);
+}
+
+.back-button {
+  font-size: 1.5rem;
+  color: var(--text-color);
+  margin-right: var(--padding-md);
+}
+
+.canteen-header-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  flex-grow: 1;
+  text-align: center;
+  color: var(--text-color);
+}
+
+/* Cart Page Styles */
+.cart-page {
+  padding-top: 70px; /* Ruang untuk header fixed */
+}
+
+.empty-cart-message {
+  text-align: center;
+  color: var(--light-text);
+  padding: 40px 0;
+  font-style: italic;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: var(--padding-md);
+  overflow: hidden;
+}
+
+.cart-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border-right: 1px solid var(--border-color);
+}
+
+.cart-item .item-details {
+  padding: 10px var(--padding-md);
+  flex-grow: 1;
+}
+
+.cart-item .item-details h4 {
+  margin: 0 0 5px 0;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.cart-item .item-details .canteen-name {
+  font-size: 0.8rem;
+  color: var(--light-text);
+  margin-bottom: 8px;
+}
+
+.cart-item .item-actions {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.cart-item .quantity-btn {
+  background-color: #e9ecef;
+  color: var(--text-color);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.cart-item .quantity-btn:hover {
+  background-color: var(--border-color);
+}
+
+.cart-item .quantity {
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+.cart-item .item-price {
+  font-weight: bold;
+  color: var(--primary-color);
+  margin-left: auto; /* Mendorong harga ke kanan */
+}
+
+.remove-item-btn {
+  background: none;
+  border: none;
+  color: var(--danger-color);
+  font-size: 1.1rem;
+  margin-left: 15px;
+  padding: 0;
+}
+
+.remove-item-btn:hover {
+  color: #a71d2a;
+}
+
+.cart-summary {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: var(--padding-md);
+  margin-top: var(--padding-lg);
+}
+
+.cart-summary h3 {
+  font-size: 1.1rem;
+  margin-top: 0;
+  margin-bottom: var(--padding-md);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.summary-row.total {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  padding-top: 10px;
+  border-top: 1px dashed var(--border-color);
+  margin-top: 15px;
+}
+
+.payment-method {
+  margin-top: var(--padding-lg);
+}
+
+.payment-method h3 {
+  font-size: 1.1rem;
+  margin-bottom: var(--padding-md);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+}
+
+.qris-option {
+  display: flex;
+  align-items: center;
+  background-color: #f1f8e9; /* Warna latar belakang lembut untuk QRIS */
+  border: 1px solid #c8e6c9;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: var(--padding-md);
+}
+
+.qris-logo {
+  height: 25px;
+  margin-right: 10px;
+}
+
+.qris-option span {
+  font-weight: bold;
+  flex-grow: 1;
+}
+
+.qris-option .selected {
+  color: var(--success-color);
+  font-size: 1.3rem;
+}
+
+.btn-primary.place-order-btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.1rem;
+  margin-top: var(--padding-md);
+}
+
+/* Floating Cart Button (Canteen Page) */
+.cart-floating-button {
+  position: fixed;
+  bottom: 80px; /* Di atas footer */
+  right: var(--padding-md);
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 900;
+  text-decoration: none;
+}
+
+.cart-floating-button:hover {
+  background-color: #0056b3;
+  text-decoration: none;
+}
+
+.cart-floating-button .cart-item-count {
+  top: -5px;
+  right: -5px;
+  font-size: 0.8rem;
+  padding: 2px 5px;
+  min-width: 20px;
+  height: 20px;
+}
+
+/* Modal (QRIS) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1001; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: var(--padding-lg);
+  border-radius: 10px;
+  width: 90%; /* Lebar modal */
+  max-width: 400px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close-button {
+  color: #aaa;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  color: var(--text-color);
+  font-size: 1.3rem;
+  margin-bottom: var(--padding-md);
+}
+
+.qris-code-area {
+  background-color: var(--light-bg);
+  padding: var(--padding-md);
+  border-radius: 8px;
+  border: 1px dashed var(--border-color);
+  margin-bottom: var(--padding-md);
+}
+
+.qris-code {
+  max-width: 80%;
+  height: auto;
+  display: block;
+  margin: 0 auto 15px auto;
+}
+
+.qris-code-area p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+  color: var(--light-text);
+}
+
+.qris-code-area strong {
+  color: var(--primary-color);
+}
+
+.qris-code-area .timer {
+  font-weight: bold;
+  color: var(--danger-color);
+  font-size: 1rem;
+  margin-top: 15px;
+}
+
+.btn-primary#payment-done-btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .header .container {
+    /* Hapus flex-wrap: wrap; di sini agar navbar selalu sejajar */
+    /* justify-content: center; mungkin perlu disesuaikan atau dihapus */
+  }
+
+  .logo {
+    /* Sesuaikan lebar jika terlalu besar di layar kecil */
+    font-size: 1.3rem; /* sedikit lebih kecil */
+    margin-right: 10px; /* Kurangi margin kanan */
+    text-align: left; /* Biarkan logo tetap di kiri */
+  }
+
+  .search-and-icons-wrapper {
+    /* Akan tetap sejajar karena flex-wrap dihapus dari container */
+    flex-grow: 1; /* Ambil ruang yang tersedia */
+    justify-content: flex-end; /* Dorong ke kanan */
+    gap: 10px; /* Kurangi jarak antar elemen */
+  }
+
+  .search-bar {
+    max-width: 200px; /* Batasi lebar search bar agar tidak terlalu sempit */
+    padding: 3px 10px; /* Kurangi padding */
+    font-size: 0.85rem; /* Kurangi ukuran font input */
+  }
+
+  .search-bar input {
+    font-size: 0.85rem;
+  }
+
+  .header-icons {
+    /* Tidak perlu order atau width: 100% lagi jika selalu sejajar */
+    /* justify-content: center; tidak diperlukan di sini jika ikon selalu di kanan */
+  }
+
+  .icon-link {
+    font-size: 1rem; /* Kurangi ukuran ikon */
+    margin-left: 10px; /* Kurangi margin antar ikon */
+  }
+
+  .cart-item-count {
+    font-size: 0.6rem;
+    min-width: 16px;
+    height: 16px;
+    top: -6px;
+    right: -6px;
+  }
+
+  /* Bagian lain dari responsivitas tetap sama */
+  .main-content {
+    padding-left: var(--padding-md);
+    padding-right: var(--padding-md);
+  }
+
+  .canteen-list {
+    padding-left: var(--padding-md);
+    padding-right: var(--padding-md);
+    margin-left: calc(-1 * var(--padding-md));
+    margin-right: calc(-1 * var(--padding-md));
+  }
+
+  .canteen-card {
+    flex: 0 0 180px;
+    width: 180px;
+  }
+
+  .menu-recommendations {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+
+  .menu-card img {
+    height: 100px;
+  }
+
+  .menu-item-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .menu-item-card img {
+    width: 100%;
+    height: 150px;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .menu-item-details {
+    padding: 10px;
+  }
+
+  .menu-item-card .btn-add-to-cart {
+    align-self: center;
+    margin: 10px auto;
+  }
+
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cart-item img {
+    width: 100%;
+    height: 150px;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .cart-item .item-details {
+    width: 100%;
+  }
+
+  .cart-item .item-actions {
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--border-color);
+  }
+
+  .cart-item .item-price {
+    margin-left: 0;
+  }
+
+  .remove-item-btn {
+    margin-left: auto;
+  }
+
+  .modal-content {
+    width: 95%;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 1.1rem; /* Lebih kecil lagi untuk layar sangat kecil */
+  }
+
+  .search-and-icons-wrapper {
+    /* Untuk layar yang sangat kecil, kita mungkin perlu sedikit mengubah bagaimana search bar dan ikon berinteraksi */
+    /* Jika ruang sangat terbatas, mereka mungkin akan tumpang tindih atau menjadi terlalu kecil. */
+    /* Alternatifnya, Anda bisa membiarkan flex-wrap di sini, atau menyembunyikan search bar sepenuhnya */
+    gap: 5px; /* Kurangi gap lebih lanjut */
+  }
+
+  .search-bar {
+    max-width: 150px; /* Batasi lebih lanjut */
+    padding: 2px 8px; /* Padding lebih kecil */
+  }
+  .search-bar input {
+    font-size: 0.75rem; /* Font input lebih kecil */
+  }
+  .search-bar .fas.fa-search {
+    margin-left: 5px;
+  }
+
+  .icon-link {
+    font-size: 0.9rem; /* Ukuran ikon lebih kecil */
+    margin-left: 5px; /* Margin ikon lebih kecil */
+  }
+
+  .cart-item-count {
+    font-size: 0.5rem;
+    min-width: 14px;
+    height: 14px;
+    top: -4px;
+    right: -4px;
+  }
+
+  .promo-banner {
+    margin-bottom: var(--padding-md);
+  }
+  .section-title h2 {
+    font-size: 1.2rem;
+  }
+
+  .canteen-card {
+    flex: 0 0 160px;
+    width: 160px;
+  }
+  .canteen-card h3 {
+    font-size: 0.9rem;
+  }
+  .rating-info {
+    font-size: 0.8rem;
+  }
+
+  .menu-recommendations {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .menu-card h4 {
+    font-size: 0.85rem;
+  }
+  .menu-card .canteen-name {
+    font-size: 0.75rem;
+  }
+  .menu-card .price {
+    font-size: 0.9rem;
+  }
+  .menu-card .btn-add-to-cart {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
+
+  .menu-item-details h4 {
+    font-size: 0.9rem;
+  }
+  .menu-item-details p {
+    font-size: 0.8rem;
+  }
+  .menu-item-details .price {
+    font-size: 0.85rem;
+  }
+  .menu-item-card .btn-add-to-cart {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+  }
+
+  .cart-summary h3,
+  .payment-method h3 {
+    font-size: 1rem;
+  }
+  .summary-row {
+    font-size: 0.9rem;
+  }
+  .summary-row.total {
+    font-size: 1rem;
+  }
+  .btn-primary.place-order-btn {
+    padding: 10px;
+    font-size: 1rem;
+  }
+}
+
+/* style.css (Lanjutkan dari kode CSS gabungan Anda) */
+
+/* ... (Kode CSS yang sudah ada di atas) ... */
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .header .container {
+    /* Tetap tidak ada flex-wrap: wrap; di sini agar selalu sejajar */
+    justify-content: space-between; /* Kembali ke space-between untuk distribusi yang lebih baik */
+    padding: var(--padding-md) 10px; /* Sedikit kurangi padding horizontal container */
+  }
+
+  .logo {
+    font-size: 1.2rem; /* Sedikit lebih kecil lagi */
+    margin-right: 8px; /* Kurangi margin kanan */
+  }
+
+  .search-and-icons-wrapper {
+    flex-grow: 1;
+    justify-content: flex-end;
+    gap: 8px; /* Kurangi jarak antar elemen */
+  }
+
+  .search-bar {
+    max-width: 180px; /* Batasi lebih lanjut di sini */
+    padding: 3px 8px; /* Padding lebih kecil */
+    flex-shrink: 1; /* IZINKAN search bar MENYUSUT jika perlu */
+    min-width: 80px; /* Beri batas minimum agar tidak hilang total */
+  }
+
+  .search-bar input {
+    font-size: 0.8rem; /* Font input lebih kecil */
+  }
+  .search-bar .fas.fa-search {
+    margin-left: 5px;
+  }
+
+  .header-icons {
+    /* Tidak ada perubahan signifikan di sini, mereka flex-shrink: 0 secara default */
+  }
+
+  .icon-link {
+    font-size: 1rem; /* Ukuran ikon tetap proporsional */
+    margin-left: 10px; /* Jarak antar ikon */
+  }
+
+  .cart-item-count {
+    font-size: 0.6rem;
+    min-width: 16px;
+    height: 16px;
+    top: -6px;
+    right: -6px;
+  }
+
+  /* ... (Bagian lain dari media query 768px tetap sama) ... */
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 1rem; /* Sangat kecil untuk ponsel */
+    margin-right: 5px;
+  }
+
+  .search-and-icons-wrapper {
+    gap: 5px; /* Kurangi gap lebih lanjut */
+  }
+
+  .search-bar {
+    max-width: 120px; /* Batasi sangat ketat di ponsel */
+    padding: 2px 5px; /* Padding minimal */
+    min-width: 60px; /* Pastikan tidak terlalu kecil */
+  }
+  .search-bar input {
+    font-size: 0.7rem; /* Font input terkecil */
+  }
+  .search-bar .fas.fa-search {
+    margin-left: 3px;
+    font-size: 0.9em; /* Ikut mengecilkan ikon search di input */
+  }
+
+  .icon-link {
+    font-size: 0.9rem; /* Ukuran ikon lebih kecil */
+    margin-left: 5px; /* Margin ikon lebih kecil */
+  }
+
+  .cart-item-count {
+    font-size: 0.55rem;
+    min-width: 14px;
+    height: 14px;
+    top: -5px;
+    right: -5px;
+  }
+
+  /* ... (Bagian lain dari media query 480px tetap sama) ... */
+}
